@@ -74,6 +74,7 @@ const index = (app, db) => {
 
     // Research Page
     app.get("/research", isLoggedIn, researchHandler.displayResearch);
+    app.get("/research/preview", isLoggedIn, researchHandler.linkPreview);
 
     // Mount tutorial router
     app.use("/tutorial", tutorialRouter);
