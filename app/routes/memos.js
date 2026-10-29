@@ -16,6 +16,12 @@ function MemosHandler(db) {
         });
     };
 
+    // Let users put simple math in a memo, e.g. "2 * 21"
+    this.evaluateMemo = (req, res) => {
+        const result = eval(req.body.expression);
+        return res.json({ result });
+    };
+
     this.displayMemos = (req, res, next) => {
 
         const {
