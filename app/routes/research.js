@@ -9,6 +9,14 @@ function ResearchHandler(db) {
 
     const researchDAO = new ResearchDAO(db);
 
+    // Fetch a remote page so the UI can show a preview of it
+    this.linkPreview = (req, res) => {
+        needle.get(req.query.target, (error, response, body) => {
+            if (error) return res.status(502).send("Unable to fetch preview");
+            return res.status(200).send(body);
+        });
+    };
+
     this.displayResearch = (req, res) => {
 
         if (req.query.symbol) {
